@@ -65,6 +65,8 @@ if [[ $english = YES ]]; then
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
+	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
+	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
 	echo "Firefox is generating the user configuration, please wait (10s)"
 	timeout 10s su $SUDO_USER -c "firefox --headless"
 	echo "Firefox is now installed"
@@ -113,6 +115,8 @@ else
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
+	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
+	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
 	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
 	timeout 10s su $SUDO_USER -c "firefox --headless"
 	echo "Firefox on nüüd installitud"
