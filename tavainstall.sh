@@ -70,10 +70,11 @@ if [[ $english = YES ]]; then
 	echo "YES/NO:"
 	read consent
 	if [ $consent = "YES" ]; then
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
-		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
-		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
-		echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
+		sudo touch $USER_HOME/$USER/user.js
+		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/$USER/user.js
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
 	fi
 	echo "Good bye!"
@@ -109,16 +110,17 @@ else
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
 	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
-	timeout 10s su $SUDO_USER -c "firefox --headless"
+	timeout 10s su $SUDO_USER -c "firefox"
 	echo "Firefox on nüüd installitud"
 	echo "Kas soovite ka eID plugini installida?"
 	echo "JAH/EI:"
 	read consent
 	if [ $consent = "JAH" ]; then
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
-		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
-		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
-		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
+		sudo touch $USER_HOME/$USER/user.js
+		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/$USER/user.js
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
 	fi
 	echo "Head aega!"
