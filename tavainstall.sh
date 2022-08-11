@@ -43,7 +43,7 @@ if [[ $english = YES ]]; then
 	echo "Please type YES or NO"
 	read consent
 	if [ $consent != "YES" ]; then
-		echo "Skript peatatud, firefoxi desinstallimist ei lubatud."
+		echo "Script halted, uninstalling firefox was not permitted."
 		exit
 	fi
 	echo "Removing firefox"
@@ -79,6 +79,7 @@ else
 	  then echo "palun jooksuta skript SUDOna (sudo ./tavainstall.sh)"
 	  exit
 	fi
+	USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 	echo "Kas lubad firefoxi SNAPi versiooni desinstallimise?"
 	echo "Palun kirjuta 'JAH', või 'EI'"
 	read consent
