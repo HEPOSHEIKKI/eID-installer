@@ -58,6 +58,7 @@ if [[ $english = YES ]]; then
 	echo "Extracting the firefox archive"
 	echo "Please wait"
 	sudo tar -xf firefox-*.tar.bz2
+	rm firefox-103.0.2.tar.bz2
 	echo "Finishing up"
 	echo "Please wait"
 	sudo mv firefox /opt
@@ -73,7 +74,7 @@ if [[ $english = YES ]]; then
 	if [ $consent = "YES" ]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
-		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
+		sudo echo "pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
@@ -101,6 +102,7 @@ else
 	echo "Palun oota"
 	sleep 2s
 	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/103.0.2/linux-x86_64/en-US/firefox-103.0.2.tar.bz2
+	rm firefox-103.0.2.tar.bz2
 	sleep 2s
 	echo "Pakin firefoxi arhhiivi lahti"
 	echo "Palun oota"
@@ -112,7 +114,7 @@ else
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
 	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
-	timeout 10s su $SUDO_USER -c "firefox"
+	timeout 10s su $SUDO_USER -c "firefox --headless"
 	echo "Firefox on nüüd installitud"
 	echo "Kas soovite ka eID plugini installida?"
 	echo "JAH/EI:"
@@ -120,7 +122,7 @@ else
 	if [ $consent = "JAH" ]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
-		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
+		sudo echo "pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
