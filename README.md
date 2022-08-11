@@ -6,7 +6,7 @@ A script to automate the installation of an eID compatible version of firefox.
 
 
 
-<img src="eid_logo_cmyk.webp.png" width="350" title="Logo">
+<img src="logo.png" width="350" title="Logo">
 
 
 ## Installation
