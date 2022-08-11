@@ -7,7 +7,7 @@ A script to automate the installation of an eID compatible version of firefox.
 
 
 
-![logo](https://www.id.ee/wp-content/uploads/2022/02/eid_logo_cmyk.png)
+![screenshot](https://www.id.ee/wp-content/uploads/2022/02/eid_logo_cmyk.png)
 
 
 ## Authors
