@@ -50,9 +50,11 @@ if [[ $english = YES ]]; then
 	sudo snap remove firefox
 	mkdir ./tulerebane
 	cd ./tulerebane
+	sleep 2s
 	echo "Downloading firefox version-103"
 	echo "Please wait"
 	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/103.0.2/linux-x86_64/en-US/firefox-103.0.2.tar.bz2
+	sleep 2s
 	echo "Extracting the firefox archive"
 	echo "Please wait"
 	sudo tar -xf firefox-*.tar.bz2
@@ -69,6 +71,7 @@ if [[ $english = YES ]]; then
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		timeout 5s firefox -headless
 		echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
 		echo "eID installed"
 	fi
@@ -91,9 +94,11 @@ else
 	sudo snap remove firefox
 	mkdir ./tulerebane
 	cd ./tulerebane
+	sleep 2s
 	echo "Laetagse alla firefoxi versioon-103"
 	echo "Palun oota"
 	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/103.0.2/linux-x86_64/en-US/firefox-103.0.2.tar.bz2
+	sleep 2s
 	echo "Pakin firefoxi arhhiivi lahti"
 	echo "Palun oota"
 	sudo tar -xf firefox-*.tar.bz2
@@ -110,9 +115,10 @@ else
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		timeout 5s firefox -headless
 		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
 		echo "eID installed"
 	fi
-	echo "Good bye!"
+	echo "Head aega!"
 	exit
 fi
