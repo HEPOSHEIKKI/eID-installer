@@ -67,8 +67,8 @@ if [[ $english = YES ]]; then
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
 	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
 	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
-	echo "Firefox is generating the user configuration, please wait (10s)"
-	timeout 10s su $SUDO_USER -c "firefox --headless"
+	echo "Firefox is generating the user configuration, please wait (4s)"
+	timeout 4s su $SUDO_USER -c "firefox
 	echo "Firefox is now installed"
 	echo "Do you wish to install the eID extension for firefox?"
 	echo "YES/NO:"
@@ -117,8 +117,8 @@ else
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
 	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
 	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
-	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
-	timeout 10s su $SUDO_USER -c "firefox --headless"
+	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (4s)"
+	timeout 4s su $SUDO_USER -c "firefox"
 	echo "Firefox on nüüd installitud"
 	echo "Kas soovite ka eID plugini installida?"
 	echo "JAH/EI:"
