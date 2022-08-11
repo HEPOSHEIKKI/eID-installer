@@ -67,8 +67,8 @@ if [[ $english = YES ]]; then
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
 	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
 	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
-	echo "Firefox is generating the user configuration, please wait (10s)"
-	timeout 10s su $SUDO_USER -c "firefox --headless"
+	echo "Firefox is generating the user configuration, please wait"
+	timeout 4s su $SUDO_USER -c "firefox"
 	echo "Firefox is now installed"
 	echo "Do you wish to install the eID extension for firefox?"
 	echo "YES/NO:"
@@ -76,7 +76,7 @@ if [[ $english = YES ]]; then
 	if [ $consent = "YES" ]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
-		sudo echo "pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
+		sudo echo "user_pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
 		sudo mkdir $USER_HOME/.mozilla/firefox/$USER/extensions
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
@@ -119,8 +119,8 @@ else
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
 	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
 	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
-	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
-	timeout 10s su $SUDO_USER -c "firefox"
+	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota"
+	timeout 4s su $SUDO_USER -c "firefox"
 	echo "Firefox on nüüd installitud"
 	echo "Kas soovite ka eID plugini installida?"
 	echo "JAH/EI:"
@@ -128,7 +128,7 @@ else
 	if [ $consent = "JAH" ]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
-		sudo echo "pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
+		sudo echo "user_pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
 		sudo mkdir $USER_HOME/.mozilla/firefox/$USER/extensions
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
