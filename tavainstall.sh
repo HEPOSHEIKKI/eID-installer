@@ -73,8 +73,8 @@ if [[ $english = YES ]]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/$USER/user.js
 		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/$USER/user.js
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
-		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
 	fi
 	echo "Good bye!"
@@ -119,8 +119,8 @@ else
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/$USER/user.js
 		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/$USER/user.js
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
-		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
 	fi
 	echo "Head aega!"
