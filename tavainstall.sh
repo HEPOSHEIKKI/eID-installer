@@ -21,8 +21,8 @@ for i in "$@"; do
 			echo "-h (--help): 				Printib välja selle abiteksti inglise keeles"
 			exit 1
 			;;
-		-l|--language)
-			english=1
+		-e|--english)
+			english=YES
 			shift
 			;;
     -*|--*)
@@ -33,7 +33,7 @@ for i in "$@"; do
       ;;
   esac
 done
-if [ $english = 1 ]; then
+if [ $english = YES ]; then
 	if [ "$EUID" -ne 0 ]
 	  then echo "Please run the script as root (sudo ./tavainstall.sh)"
 	  exit
