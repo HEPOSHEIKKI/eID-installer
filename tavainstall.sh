@@ -104,11 +104,11 @@ else
 	echo "Palun oota"
 	sleep 2s
 	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/103.0.2/linux-x86_64/en-US/firefox-103.0.2.tar.bz2
-	rm firefox-103.0.2.tar.bz2
 	sleep 2s
 	echo "Pakin firefoxi arhhiivi lahti"
 	echo "Palun oota"
 	sudo tar -xf firefox-*.tar.bz2
+	rm firefox-103.0.2.tar.bz2
 	echo "Viimistlen firefoxi installatsiooni"
 	echo "Palun oota"
 	sudo mv firefox /opt
