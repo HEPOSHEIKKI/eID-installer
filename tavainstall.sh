@@ -63,6 +63,8 @@ if [[ $english = YES ]]; then
 	sudo mv firefox /opt
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
+	echo "Firefox is generating the user configuration, please wait (10s)"
+	timeout 10s su $SUDO_USER -c "firefox --headless"
 	echo "Firefox is now installed"
 	echo "Do you wish to install the eID extension for firefox?"
 	echo "YES/NO:"
@@ -71,10 +73,6 @@ if [[ $english = YES ]]; then
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
-		echo "Firefox is generating the user configuration"
-		echo "Firefox will now start for 3 seconds, please don't do anything"
-		sleep 3s
-		timeout 3s su $SUDO_USER -c "firefox"
 		echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
 		echo "eID installed"
 	fi
@@ -110,6 +108,8 @@ else
 	sudo mv firefox /opt
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
+	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
+	timeout 10s su $SUDO_USER -c "firefox"
 	echo "Firefox on nüüd installitud"
 	echo "Kas soovite ka eID plugini installida?"
 	echo "JAH/EI:"
@@ -118,9 +118,6 @@ else
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
-		echo "Firefox genereerib kasutajakonfiguratsiooni"
-		echo "Firefoxi aken käivitub 3 sekundiks, palun ärge puutuge midagi"
-		timeout 3s su $SUDO_USER -c "firefox"
 		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
 		echo "eID installed"
 	fi
