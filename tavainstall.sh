@@ -109,7 +109,7 @@ else
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
 	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota (10s)"
-	timeout 10s su $SUDO_USER -c "firefox"
+	timeout 10s su $SUDO_USER -c "firefox --headless"
 	echo "Firefox on nüüd installitud"
 	echo "Kas soovite ka eID plugini installida?"
 	echo "JAH/EI:"
