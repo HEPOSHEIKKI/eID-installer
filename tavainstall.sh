@@ -33,7 +33,7 @@ for i in "$@"; do
       ;;
   esac
 done
-if [ $english = YES ]; then
+if [[ $english = YES ]]; then
 	if [ "$EUID" -ne 0 ]
 	  then echo "Please run the script as root (sudo ./tavainstall.sh)"
 	  exit
