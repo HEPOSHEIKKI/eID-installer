@@ -38,6 +38,7 @@ if [[ $english = YES ]]; then
 	  then echo "Please run the script as root (sudo ./tavainstall.sh)"
 	  exit
 	fi
+	USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 	echo "Firefox snap will now be uninstalled, is that okay?"
 	echo "Please type YES or NO"
 	read consent
@@ -62,17 +63,13 @@ if [[ $english = YES ]]; then
 	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
 	echo "Firefox is now installed"
 	echo "Do you wish to install the eID extension for firefox?"
-	echo "JAH/EI:"
+	echo "YES/NO:"
 	read consent
 	if [ $consent = "YES" ]; then
-		if [ ! -d "/opt/firefox/extensions/" ]; then
-			mkdir /opt/firefox/extensions/
-		fi
-		if [ ! -d "/opt/firefox/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}/" ]; then
-			mkdir /opt/firefox/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}/
-		fi
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P /opt/firefox/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}/
-		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P /opt/firefox/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}/
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
+		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
 		echo "eID installed"
 	fi
 	echo "Good bye!"
@@ -83,7 +80,7 @@ else
 	  exit
 	fi
 	echo "Kas lubad firefoxi SNAPi versiooni desinstallimise?"
-	echo "Palun kirjuta 'JAH', või 'EI"
+	echo "Palun kirjuta 'JAH', või 'EI'"
 	read consent
 	if [ $consent != "JAH" ]; then
 		echo "Skript peatatud, firefoxi desinstallimist ei lubatud."
@@ -109,16 +106,12 @@ else
 	echo "JAH/EI:"
 	read consent
 	if [ $consent = "JAH" ]; then
-		if [ ! -d "/opt/firefox/extensions/" ]; then
-			mkdir /opt/firefox/extensions/
-		fi
-		if [ ! -d "/opt/firefox/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}/" ]; then
-			mkdir /opt/firefox/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}/
-		fi
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P /opt/firefox/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}/
-		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P /opt/firefox/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}/
-		echo "eID installitud"
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -P $USER_HOME/.mozilla/firefox/*.default-release/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
+		sudo touch $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		sudo echo "Pref("extensions.autoDisableScopes", 0);" >> $USER_HOME/.mozilla/firefox/*.default-release/user.js
+		echo "eID installed"
 	fi
-	echo "Head aega!"
+	echo "Good bye!"
 	exit
 fi
