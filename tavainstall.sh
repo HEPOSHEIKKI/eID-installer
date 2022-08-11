@@ -76,7 +76,7 @@ if [[ $english = YES ]]; then
 	if [ $consent = "YES" ]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
-		sudo echo (pref("extensions.autoDisableScopes", 0); >> $USER_HOME/.mozilla/firefox/$USER/user.js'
+		sudo echo "pref("extensions.autoDisableScopes", 0); >> $USER_HOME/.mozilla/firefox/$USER/user.js"
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
@@ -84,9 +84,9 @@ if [[ $english = YES ]]; then
 	echo "Good bye!"
 	exit
 else
-		if [ "$EUID" -ne 0 ]
-	  then echo "palun jooksuta skript SUDOna (sudo ./tavainstall.sh)"
-	  exit
+		if [ "$EUID" -ne 0 ]; then
+			echo "palun jooksuta skript SUDOna (sudo ./tavainstall.sh)"
+	  	exit
 	fi
 	USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 	echo "Kas lubad firefoxi SNAPi versiooni desinstallimise?"
@@ -126,7 +126,7 @@ else
 	if [ $consent = "JAH" ]; then
 		USER="$(ls $USER_HOME/.mozilla/firefox/ | grep -v ".default-release-1" | grep default-release)"
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
-		sudo echo 'pref("extensions.autoDisableScopes", 0); >> $USER_HOME/.mozilla/firefox/$USER/user.js'
+		sudo echo "pref("extensions.autoDisableScopes", 0); >> $USER_HOME/.mozilla/firefox/$USER/user.js"
 		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
