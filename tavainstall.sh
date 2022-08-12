@@ -63,9 +63,9 @@ if [[ $english = YES ]]; then
 	echo "Please wait"
 	sudo mv firefox /opt
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
-	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
-	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
+	wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
+	wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
+	#sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
 	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
 	echo "Firefox is generating the user configuration, please wait"
 	timeout 4s su $SUDO_USER -c "firefox"
@@ -115,10 +115,10 @@ else
 	echo "Palun oota"
 	sudo mv firefox /opt
 	sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
-	sudo wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
-	sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
-	sudo chmod +x $USER_HOME/Desktop/firefox.desktop
+	wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
+	wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P $USER_HOME/Desktop/
+	#sudo chown $USER_HOME/Desktop/firefox.desktop $SUDO_USER:$SUDO_USER
+	chmod +x $USER_HOME/Desktop/firefox.desktop
 	echo "Firefox genereerib kasutajakonfiguratsiooni, palun oota"
 	timeout 4s su $SUDO_USER -c "firefox"
 	echo "Firefox on nüüd installitud"
