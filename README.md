@@ -18,6 +18,10 @@ Install my-project with bash
   sudo chmod +x tavainstall.sh
   sudo ./tavainstall.sh
 ```
+For more information run
+```
+sudo ./tavainstall.sh --help
+```
     
 ## Authors
 
