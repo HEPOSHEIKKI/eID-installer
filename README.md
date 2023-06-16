@@ -11,7 +11,7 @@ A script to automate the installation of an eID compatible version of firefox.
 
 ## Installation
 
-Install my-project with bash
+Install eID-installer with bash
 
 ```bash
   wget raw.githubusercontent.com/HEPOSHEIKKI/eID-installer/main/tavainstall.sh
