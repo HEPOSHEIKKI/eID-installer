@@ -53,7 +53,7 @@ if [[ $english = YES ]]; then
 	echo "Downloading firefox version-103"
 	echo "Please wait"
 	sleep 2s
-	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/103.0.2/linux-x86_64/en-US/firefox-103.0.2.tar.bz2
+	wget "$(curl -ls "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64" | grep -oP '"(.*?)"' | sed 's/"//g')" -nv --show-progress
 	sleep 2s
 	echo "Extracting the firefox archive"
 	echo "Please wait"
@@ -78,7 +78,7 @@ if [[ $english = YES ]]; then
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
 		sudo echo "user_pref(\"extensions.autoDisableScopes\", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
 		sudo mkdir $USER_HOME/.mozilla/firefox/$USER/extensions
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.2.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
 	fi
@@ -104,7 +104,7 @@ else
 	echo "Laetagse alla firefoxi versioon-103"
 	echo "Palun oota"
 	sleep 2s
-	wget https://download-installer.cdn.mozilla.net/pub/firefox/releases/103.0.2/linux-x86_64/en-US/firefox-103.0.2.tar.bz2
+	wget "$(curl -ls "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64" | grep -oP '"(.*?)"' | sed 's/"//g')" -nv --show-progress
 
 	sleep 2s
 	echo "Pakin firefoxi arhhiivi lahti"
@@ -130,7 +130,7 @@ else
 		sudo touch $USER_HOME/.mozilla/firefox/$USER/user.js
 		sudo echo "user_pref(\"extensions.autoDisableScopes\", 0);" >> $USER_HOME/.mozilla/firefox/$USER/user.js
 		sudo mkdir $USER_HOME/.mozilla/firefox/$USER/extensions
-		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.1.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
+		wget https://addons.mozilla.org/firefox/downloads/file/3963431/web_eid_webextension-2.2.1.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{e68418bc-f2b0-4459-a9ea-3e72b6751b07}.xpi
 		wget https://addons.mozilla.org/firefox/downloads/file/3439907/pkcs11_module_loader-1.0.5.xpi -O $USER_HOME/.mozilla/firefox/$USER/extensions/{02274e0c-d135-45f0-8a9c-32b35110e10d}.xpi
 		echo "eID installed"
 	fi
